@@ -35,11 +35,30 @@ Output: nips_clean.txt
 
 
 ## Modèles de Génération de Texte
-* 3.1 Modèle from Scratch :
+#### 3.1 Modèle LSTM :   Ce notebook implémente un modèle de génération de texte en utilisant un réseau de neurones récurrent (RNN) basé sur une architecture LSTM bidirectionnelle.
 
-Le notebook text_generation_word_train_notebook.ipynb implémente et entraîne un modèle de génération de texte à partir de zéro.
+ Préparation des données
+ - Chargement du corpus : Le texte utilisé provient d'un fichier contenant des articles de NIPS.
+ - Nettoyage des données : Suppression des mots rares (fréquence < 3) pour éviter le bruit dans l'entraînement.
+ - Tokenisation : Conversion des mots en séquences d'entiers à l'aide de Tokenizer de Keras.
+ - Création des séquences : Génération de séquences de longueur fixe (200 mots), avec la dernière position utilisée comme cible pour la prédiction.
 
-* 3.2 Fine-tuning de GPT-2 (Modèle retenu)
+ Entraînement du modèle
+  - Une couche d'embedding (256 dimensions) pour capturer les relations entre les mots.
+  - Une couche LSTM bidirectionnelle (128 unités) pour exploiter les dépendances dans les deux directions du texte.
+  - Une couche de dropout (0.2) pour éviter l'overfitting.
+  - Une couche dense avec activation softmax pour la prédiction du mot suivant.
+  - Compilation avec la fonction de perte categorical_crossentropy et l'optimiseur Adam.
+  - Callback EarlyStopping pour stopper l'entraînement si la perte ne diminue plus après 5 epochs.
+  - Génération des batchs : Une fonction de générateur est utilisée pour alimenter le modèle avec les données en mémoire de manière efficace.
+  - Entraînement effectué sur 300 epochs avec un batch size de 32.
+ 
+ Sauvegarde du modèle
+  -Modèle enregistré sous model.h5 pour une future réutilisation.
+  -Tokenizer sauvegardé (tokenizer.pkl) pour conserver l'indexation des mots.
+  -Séquences de mots enregistrées (sequences_words.txt) pour une éventuelle reprise du prétraitement.
+
+#### 3.2 Fine-tuning de GPT-2 (Modèle retenu)
 
   Le notebook `gpt2_train.ipynb` adapte le modèle pré-entraîné GPT-2 à notre corpus scientifique.
 
