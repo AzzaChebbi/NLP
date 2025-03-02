@@ -54,21 +54,48 @@ Output: nips_clean.txt
   - Entraînement effectué sur 300 epochs avec un batch size de 32.
  
  Sauvegarde du modèle
-  -Modèle enregistré sous model.h5 pour une future réutilisation.
-  -Tokenizer sauvegardé (tokenizer.pkl) pour conserver l'indexation des mots.
-  -Séquences de mots enregistrées (sequences_words.txt) pour une éventuelle reprise du prétraitement.
+  - Modèle enregistré sous model.h5 pour une future réutilisation.
+  - Tokenizer sauvegardé (tokenizer.pkl) pour conserver l'indexation des mots.
+  - Séquences de mots enregistrées (sequences_words.txt) pour une éventuelle reprise du prétraitement.
 
-#### 3.2 Fine-tuning de GPT-2 (Modèle retenu)
-
-  Le notebook `gpt2_train.ipynb` adapte le modèle pré-entraîné GPT-2 à notre corpus scientifique.
+#### 3.2 Fine-tuning de GPT-2 (Modèle retenu) : Le notebook `gpt2_train.ipynb` adapte le modèle pré-entraîné GPT-2 à notre corpus scientifique.
 
    - Adaptation du modèle au domaine scientifique  
    - Perte plus faible comparée à celle du modèle entraîné from scratch  
    - Meilleure capacité de généralisation  
 
+Ce notebook implémente un fine-tuning du modèle GPT-2 (124M) sur un corpus spécifique afin de générer du texte adapté aux données fournies.
+
+  - Installation et Préparation de l’Environnement
+  - Installation de la bibliothèque gpt-2-simple pour faciliter l’utilisation de GPT-2.
+  - Importation des bibliothèques nécessaires (gpt_2_simple, tensorflow).
+  - Téléchargement du modèle pré-entraîné GPT-2 (version 124M).
+  - Montage de Google Drive pour stocker et récupérer les fichiers d’entraînement.
+  - Copie du fichier de texte nips_clean.txt depuis Google Drive vers l’environnement Colab.
+
+Entraînement du modèle sur un corpus spécifique
+  - Démarrage d’une session TensorFlow pour gérer l’entraînement du modèle.
+  - Fine-tuning initial :
+    - Chargement du corpus.
+    - Entraînement du modèle avec steps=1000.
+    - Sauvegarde automatique du modèle toutes les 500 itérations.
+    - Génération d’échantillons de texte toutes les 200 itérations pour évaluer la progression.
+  - Continuation du fine-tuning :
+    - Réinitialisation de la session TensorFlow et chargement du dernier checkpoint.
+    - Extension de l’entraînement à 2000 steps supplémentaires.
+    - Nouvelle reprise avec 2000 steps supplémentaires pour améliorer la qualité de la génération.
+
+Sauvegarde et Chargement du Modèle Entraîné
+ - Sauvegarde des checkpoints sur Google Drive pour éviter toute perte de progrès.
+ - Récupération des checkpoints en extrayant les fichiers du modèle depuis Google Drive vers l’environnement Colab.
+ - Vérification du contenu du dossier run1 contenant le modèle entraîné.Génération de texte avec le modèle fine-tuné
+
+Chargement du modèle entraîné (run1).
+ - Génération de texte en utilisant le modèle ajusté sur le corpus spécifique.
 ## Génération de Texte
 Le notebook gpt2_generate.ipynb utilise le modèle GPT-2 fine-tuné pour générer de nouveaux textes scientifiques.
 
+Après avoir évalué les 2 modèles, nous avons opté pour le modèle GPT-2 fine-tuné en raison de sa performance optimale, notamment grâce à la minimisation de la fonction de perte (loss)
 ## Clustering Thématique
 Le notebook de clustering applique l'algorithme K-means pour regrouper les textes scientifiques par thématique ou domaine.
 
@@ -86,3 +113,7 @@ Pour lancer l'application:
 ```bash
 streamlit run app.py
 ```
+
+Voilà des captures de notre application : 
+
+![Result_NLP1](https://github.com/user-attachments/assets/0dfcd9a7-56b7-4f73-ad44-b737988b00ab)
