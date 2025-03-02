@@ -117,3 +117,7 @@ streamlit run app.py
 Voilà des captures de notre application : 
 
 ![Result_NLP1](https://github.com/user-attachments/assets/0dfcd9a7-56b7-4f73-ad44-b737988b00ab)
+
+![Result_NLP_clustering](https://github.com/user-attachments/assets/11d9b57d-1a58-4340-8565-a145b60fc893)
+
+![Result_NLP_text_classification](https://github.com/user-attachments/assets/69568da8-4e81-4635-aee3-18b7d4aa9a60)
