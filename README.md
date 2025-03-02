@@ -18,7 +18,21 @@ Le notebook text_preprocessing.ipynb nettoie et prépare les données textuelles
 
 Opérations principales:
 
+ 📂 Importation et Exploration des Données
+  
+   - Chargement du dataset nips.csv depuis Google Drive.
+   - Suppression des abstracts manquants.
+   - Exploration des données : nombre d'entrées, types de colonnes et aperçu du texte.
+  
+ 🔍 Prétraitement du Texte
+
+   - Suppression des caractères non-ASCII et du bruit (URLs, citations, ponctuation).
+   - Normalisation du texte : conversion en minuscules, remplacement des nombres par "NUMBER".
+   - Standardisation des termes en anglais américain.
+   - Tokenisation et analyse du vocabulaire (nombre total et unique de mots).
+
 Output: nips_clean.txt
+
 
 ## Modèles de Génération de Texte
 * 3.1 Modèle from Scratch :
