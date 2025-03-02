@@ -122,6 +122,9 @@ De plus, notre application offre une fonctionnalité de clustering permettant de
 
 ![Result_NLP_clustering](https://github.com/user-attachments/assets/11d9b57d-1a58-4340-8565-a145b60fc893)
 
+![clusters1](https://github.com/user-attachments/assets/7a32cdc3-fd41-4c8b-90e5-e1a1e3ec7777)
+
+
 ![clusters2](https://github.com/user-attachments/assets/46781854-7507-4cd8-bacd-e0852b24f907)
 
 
